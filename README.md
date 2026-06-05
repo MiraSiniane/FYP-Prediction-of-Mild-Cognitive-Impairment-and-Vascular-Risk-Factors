@@ -122,4 +122,4 @@ Special attention was given to:
 
 
 ## System Overview
-![Overview of the Multimodal Diagnostic and MCI Stability Prediction Pipeline.]()
+![Overview of the Multimodal Diagnostic and MCI Stability Prediction Pipeline.](system.png)
