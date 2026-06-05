@@ -1,0 +1,81 @@
+alzheimer,alz,az,alzmr,alzr
+ampoule,amp,ampl,emp,empl
+ampoules,amps,ampls,emps,empls
+année moyenne,am
+année primaire,ap
+année secondaire,as
+antécédent,ancd,antcd,antc,atcd,atcs,atd,ant
+antécédents familiaux,antcdf,antcf,antdf,atcdf,atdf,antf
+antécédents personnels et familiaux,antfp,antcdfp,atcdfp,antcfp,antfp,antcdfp,atcdfp,antcfp,antpf,antfp
+antécédents personnels,antcdp,antcp,antdp,atcdp,atdp,antp
+athymil,athl
+avec,ac
+beaucoup,BCP
+biologique,bio
+cholestérol,CHOL
+cm,cmcomportement,cmpt,cmprt,cmprtmn,cpt,comport,compt,cprt,cpt
+comprimé,CP
+conduite à tenir,cat
+consultation,cons
+cortico sous cortical,csc
+cérébrale,cereb,cerl,crl
+dans,dn,dns
+diabète de type 2,dnid
+diagnostic,diag
+droite,drt,drte
+décédé,dcd
+examen,ex,exm,exmn
+familiaux,f
+fns,fns
+fois par jour,xj,x/j
+fois,x
+gauche,gche,gch
+glucose,glu
+glycémie,gly
+goutte,gtt,gtte
+gouttes,gtts,gttes
+grand,gd
+histoire de la maladie,hdm
+hypertension artérielle,hta
+indiçage,indice,indiçe
+insuffisance rénale,ir
+jour,jr,j
+léger,lg
+malade,mld,md,madie
+maladie d’Alzheimer,ma
+maladie,mde,mdie
+mautif de consultation,mc
+mnésique,mnes,mnsq
+modéré,mod
+mémoire,mem,mmr
+même,mm
+neurologique,neuro
+neuropsychologie,neuropsy
+niveau intellectuel,ni
+niveau,niv
+normal,nml
+par jour,/j
+pendant,pdt
+personels,p
+pour,pr
+présente,pste
+psychologue,psycho,psy
+quelque,qlq,qqs
+rendez-vous,rdv
+rien à signaler,ras
+sous traitement,s/trt
+sous,s,s/
+stable,stbl
+stade,std
+système nerveux central,snc
+sévère,sev,svr
+tdm cérébrale,tdmc
+temps,tp
+test,tst
+tm,tm
+traitement,trt,trtm,trtmn
+trouble cognitif,tc
+trouble neurocognitif,tnc
+troubles,trbl,tbl,tb,trb,tbls,tbs,trbs,trbls
+vitamine E,vite
+vitamine,vit
