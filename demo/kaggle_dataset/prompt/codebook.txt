@@ -1,0 +1,176 @@
+=== ADNI COLUMN CODEBOOK WITH ENCODINGS ===
+
+--- PATIENT DEMOGRAPHICS ---
+age      : patient age at visit (numeric, years, e.g. 76.0)
+PTGENDER : sex -- 1=Male, 2=Female
+PTEDUCAT : years of education completed (numeric, integer, e.g. 16)
+PTHAND   : handedness -- 1=Right, 2=Left, 3=Ambidextrous; null if not stated.
+           French cues: "droitier"/"droite"/"droitiere" = Right (1); "gaucher"/"gauche" = Left (2);
+           "ambidextre" = Ambidextrous (3).
+PTMARRY  : marital status -- 1=Married, 2=Widowed, 3=Divorced, 4=Never married, 5=Unknown
+PTNOTRT  : not receiving any cognitive/AD treatment -- 0=No (is on treatment), 1=Yes (no treatment); null if not stated
+PTWORK   : employment status -- 1=Employed full-time, 2=Employed part-time, 3=Self-employed, 4=Retired, 5=Homemaker, 6=Disabled, 7=Unemployed, 8=Student; null if not stated
+
+--- VISIT IDENTIFICATION ---
+VISDATE  : the date of THIS specific visit/consultation, ISO format YYYY-MM-DD if determinable
+           from the text (convert French dates/month names); null if no date is stated for it.
+
+--- MMSE SUB-ITEMS ---
+Each item: 0 = incorrect / not done, 1 = correct, null = not tested
+MMDATE   : day of month correct
+MMYEAR   : year correct
+MMMONTH  : month correct
+MMDAY    : day of week correct
+MMREAD   : reads "close your eyes" and closes eyes
+MMWRITE  : writes a complete sentence
+MMDRAW   : copies intersecting pentagons
+MMREPEAT : repeats "no ifs, ands, or buts"
+MMSEASON : season correct
+MMHOSPIT : hospital / place name correct
+MMFLOOR  : floor number correct
+MMCITY   : city correct
+WORD1    : recall of first word (0/1)
+WORD2    : recall of second word (0/1)
+WORD3    : recall of third word (0/1)
+MMSCORE  : total MMSE (0-30, integer)
+
+--- MoCA / CLOCK ---
+MOCA     : total MoCA score (0-30); null if not administered
+CUBE     : 3-D cube copy correct (0/1)
+CLOCKCON : clock contour correct (0/1)
+CLOCKNO  : clock numbers correct (0/1)
+CLOCKHAN : clock hands correct (0/1)
+
+--- DIGIT SPAN ---
+DIGFOR   : forward digit span correct (0/1)
+DIGBACK  : backward digit span correct (0/1)
+
+--- SERIAL 7 (five subtractions, each 0=wrong 1=right) ---
+SERIAL1  : first subtraction (100-7=93) correct (0/1)
+SERIAL2  : second subtraction (93-7=86) correct (0/1)
+SERIAL3  : third subtraction (86-7=79) correct (0/1)
+SERIAL4  : fourth subtraction (79-7=72) correct (0/1)
+SERIAL5  : fifth subtraction (72-7=65) correct (0/1)
+
+--- PHRASE REPETITION ---
+REPEAT1  : first phrase correct (0/1)
+REPEAT2  : second phrase correct (0/1)
+
+--- VERBAL FLUENCY ---
+FFLUENCY : letter fluency correct (0/1)
+
+--- FAQ ITEMS ---
+Scale: 0=normal, 1=has difficulty but does alone, 2=needs assistance, 3=dependent/unable
+FAQFORM  : managing bills and financial documents
+FAQFINAN : managing bank accounts / finances
+FAQSHOP  : shopping alone for food and clothes
+FAQGAME  : playing games requiring skill (cards, puzzles, chess)
+FAQBEVG  : heating water and making hot drinks
+FAQMEAL  : preparing a balanced meal
+FAQEVENT : keeping track of current events (news)
+FAQTV    : paying attention to / understanding TV, books, magazines
+FAQREM   : remembering appointments and medications
+FAQTRAVL : travelling out of the neighbourhood alone
+FAQ      : total FAQ score (sum of all 10 items, 0-30)
+
+--- BIOMARKERS (numeric, null if not measured) ---
+Abeta42, Abeta40, Abeta_ratio : amyloid-beta peptides (pg/mL)
+Tau181, pTau181 : tau phosphorylation markers (pg/mL)
+Calcium, Creatinine, Direct Bilirubin : metabolic panel
+Gamma-Glutamyltransferase : liver/alcohol marker
+Hematocrit, Hemoglobin, Hemoglobin A1C : haematology / glycaemia
+Homocysteine : cardiovascular risk marker (µmol/L)
+Platelet Ct., Red Blood Cell Count, White Blood Cell Count : complete blood count
+Thyroid-stimulating hormone (TSH) : thyroid function
+Total Bilirubin, Vitamin B12 : labs
+glucose : blood glucose (mg/dL)
+
+--- FAMILY HISTORY ---
+MOTHDEM  : 0=no, 1=yes (mother had dementia)
+MOTHAD   : 0=no, 1=yes (mother had Alzheimer's)
+MOTHSXAGE: age of mother at symptom onset (numeric, null if unknown)
+FATHDEM  : 0=no, 1=yes (father had dementia)
+FATHAD   : 0=no, 1=yes (father had Alzheimer's)
+FATHSXAGE: age of father at symptom onset (numeric, null if unknown)
+SIBGENDER: gender of affected sibling -- 1=Male, 2=Female, null if no affected sibling
+SIBDEMENT: 0=no, 1=yes (sibling had dementia)
+SIBAD    : 0=no, 1=yes (sibling had Alzheimer's)
+SIBSXAGE : age of sibling at symptom onset (numeric, null if unknown)
+
+--- INTERCURRENT ILLNESS ---
+IHSYMPTOM: category of illness symptom (integer code):
+    1=Psychiatric, 2=Neurologic (other than cognitive),
+    3=Head/Eyes/Ears/Nose/Throat, 4=Cardiovascular, 5=Respiratory,
+    6=Hepatic, 7=Dermatologic, 8=Musculoskeletal, 9=Endocrine-Metabolic,
+    10=Gastrointestinal, 11=Hematopoietic-Lymphatic, 12=Renal-Genitourinary,
+    13=Allergies/Drug Sensitivities, 14=Smoking/Alcohol/Drug Use,
+    17=Malignancy, 18=Other, 19=Cognitive Disorder/Symptom
+    -> null if no intercurrent illness
+IHDESC   : free-text description of the illness (string or null)
+IHCHRON  : 0=no, 1=yes (illness is chronic)
+IHSEVER  : severity -- 1=mild, 2=moderate, 3=severe; null if no illness
+IHPRESENT: 0=no, 1=yes (illness still present at visit)
+IHSURG   : 0=no, 1=yes (required surgery)
+
+--- MEDICAL HISTORY FLAGS (0=absent, 1=present) ---
+MH19OTHR : other conditions not listed elsewhere
+MHPSYCH  : psychiatric history (depression, anxiety, bipolar, etc.)
+MH2NEURL : neurological history (stroke, epilepsy, Parkinson's, etc.)
+MH3HEAD  : head/eyes/ears/nose/throat history
+MH4CARD  : cardiovascular history (hypertension, angina, MI, arrhythmia, etc.)
+MH5RESP  : respiratory history (asthma, COPD, etc.)
+MH6HEPAT : hepatic history (hepatitis, cirrhosis, etc.)
+MH7DERM  : dermatological / connective tissue history
+MH8MUSCL : musculoskeletal history (arthritis, osteoporosis, etc.)
+MH9ENDO  : endocrine history (diabetes, thyroid disease, etc.)
+MH14BALCH: history of binge alcohol use (0/1)
+MH14CALCH: current alcohol use (0/1)
+MH10GAST : gastrointestinal history (ulcer, IBD, etc.)
+MH11HEMA : haematological history (anaemia, coagulopathy, etc.)
+MH12RENA : renal history (CKD, nephrolithiasis, etc.)
+MH13ALLE : allergy / drug sensitivity history (0/1)
+MH14ALCH : general alcohol use history (0/1)
+MH14AALCH: age at first alcohol use (numeric, null if none)
+MH17MALI : malignancy / cancer history (0/1)
+MH18SURG : prior surgery history (0/1)
+
+--- SUBSTANCE HISTORY ---
+MH15DRUG : illicit drug use history -- 0=no, 1=yes
+MH15ADRUG: drug name(s) (free text, null if none)
+MH15BDRUG: frequency of drug use (free text, null if none)
+MH16SMOK : smoking history -- 0=never, 1=former smoker, 2=current smoker
+MH16ASMOK: age started smoking (numeric, null if never smoked)
+MH16BSMOK: age stopped smoking (numeric, null if current or never)
+MH16CSMOK: packs per day (numeric, null if never)
+
+--- BEHAVIOURAL SYMPTOMS ---
+BSXSYMNO : symptom type code (integer, null if none):
+    1=Nausea, 2=Vomiting, 3=Diarrhea, 4=Constipation,
+    5=Abdominal discomfort, 6=Sweating, 7=Dizziness, 8=Low energy,
+    9=Drowsiness, 10=Blurred vision, 11=Headache, 12=Dry mouth,
+    13=Shortness of breath, 14=Coughing, 15=Palpitations,
+    16=Chest pain, 17=Urinary discomfort, 18=Urinary frequency,
+    19=Ankle swelling, 20=Musculoskeletal pain, 21=Rash,
+    22=Insomnia, 23=Depressed mood, 24=Crying, 25=Elevated mood,
+    26=Wandering, 27=Fall, 28=Other
+    -> null if no behavioural symptom
+BSXSEVER : severity -- 1=mild, 2=moderate, 3=severe; null if no symptom
+BSXCHRON : duration in months (numeric); null if no symptom
+
+--- MEDICATION ---
+KEYMED   : key cognitive medication code (integer):
+    0=None of the above,
+    1=Aricept (donepezil),
+    3=Exelon (rivastigmine),
+    4=Namenda (memantine),
+    5=Razadyne (galantamine),
+    6=Anti-depressant medication,
+    7=Other behavioural medication
+    -> null if no cognitive medication mentioned
+CMMED    : concomitant medication name (free text, e.g. "Atorvastatin")
+CMDOSE   : dose (free text, e.g. "20mg", "400 IU")
+CMREASON : reason for medication (integer):
+    1=Adverse Event,
+    2=Therapeutic Use,
+    3=Prophylaxis / Non-therapeutic Use
+    -> null if not determinable
