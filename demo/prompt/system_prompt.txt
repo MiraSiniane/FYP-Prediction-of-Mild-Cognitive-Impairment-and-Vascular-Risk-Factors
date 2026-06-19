@@ -13,26 +13,48 @@ Your task:
 3. Return ONLY a valid JSON object of this form:
    {"visits": [ {<one JSON object per visit, with all target columns>}, ... ]}
 4. If the report only describes ONE visit, "visits" must still be a list, with a single element.
-5. Two different kinds of fields behave differently across visits:
-   a. TIME-VARYING fields (test scores, sub-item results, vitals, biomarkers, medication,
+5. Different kinds of fields behave differently across visits:
+   a. TIME-VARYING fields (test TOTAL scores like MMSCORE/MOCA/FAQ, vitals, medication,
       behavioural symptoms, intercurrent illness) -- use ONLY what is explicitly stated for
       THAT visit. Do not carry these forward or backward from another visit. If not stated
-      for this visit, use null, EXCEPT for the FAQ sub-item rule in point 6 below.
+      for this visit, use null.
    b. PERSISTENT / PATIENT-LEVEL facts (demographics: PTGENDER, PTEDUCAT, PTHAND, PTMARRY,
       PTWORK, PTNOTRT; medical history flags MH*; family history MOTHDEM, MOTHAD, MOTHSXAGE,
       FATHDEM, FATHAD, FATHSXAGE, SIBGENDER, SIBDEMENT, SIBAD, SIBSXAGE) do NOT change between
       visits. If the report states one of these facts ANYWHERE (at any visit's date/section),
       apply that SAME value to EVERY visit's row for that column -- including visits dated
       earlier than where the fact was mentioned, since it was already true at that time too.
-6. FAQ sub-items (FAQFORM, FAQFINAN, FAQSHOP, FAQGAME, FAQBEVG, FAQMEAL, FAQEVENT, FAQTV,
-   FAQREM, FAQTRAVL): if a visit gives the FAQ total but does not break down the individual
-   items, do not leave them null. Instead: reuse the per-item breakdown from the NEAREST other
-   visit in this report that does give one (visits rarely change drastically between close
-   consultations); if no visit in the whole report gives a breakdown, default every item to 0.
+   c. TEST SUB-ITEMS tied to a parent total score:
+      - MMSE items (MMDATE, MMYEAR, MMMONTH, MMDAY, MMREAD, MMWRITE, MMDRAW, MMREPEAT,
+        MMSEASON, MMHOSPIT, MMFLOOR, MMCITY, WORD1, WORD2, WORD3), MoCA/clock items (CUBE,
+        CLOCKCON, CLOCKNO, CLOCKHAN), digit span (DIGFOR, DIGBACK), serial 7 (SERIAL1-5),
+        repetition (REPEAT1, REPEAT2), fluency (FFLUENCY): if the visit gives the parent
+        score (MMSCORE or MOCA) but does not break these down individually, do not leave
+        them null -- default each to 1 (correct), especially when the parent score is
+        high/near-normal for that visit. If an item IS explicitly mentioned, always use the
+        stated value instead of this default.
+      - FAQ sub-items (FAQFORM, FAQFINAN, FAQSHOP, FAQGAME, FAQBEVG, FAQMEAL, FAQEVENT,
+        FAQTV, FAQREM, FAQTRAVL): if the visit gives the FAQ total but not the breakdown,
+        reuse the per-item breakdown from the NEAREST other visit in this report that does
+        give one; if no visit in the whole report gives a breakdown, default every item to
+        0 (normal).
+   d. BIOMARKER / LAB VALUES (Abeta42, Abeta40, Abeta_ratio, Tau181, pTau181, Calcium,
+      Creatinine, Direct Bilirubin, Gamma-Glutamyltransferase, Hematocrit, Hemoglobin,
+      Hemoglobin A1C, Homocysteine, Platelet Ct., Red Blood Cell Count,
+      Thyroid-stimulating hormone, Total Bilirubin, Vitamin B12, White Blood Cell Count,
+      glucose): lab panels are not redrawn at every visit. If a value is not stated for
+      this visit, fill it with the value from the NEAREST OTHER visit in this report that
+      does state it -- look both backward AND forward in time (e.g. if visit 1 has no
+      amyloid value but visit 2 does, fill visit 1 with visit 2's value). Only use null if
+      NO visit in the whole report ever states that biomarker.
+6. Before returning, re-count: the number of objects in "visits" MUST equal the number of
+   distinct dates/consultations you listed in step 1. If it does not match, you missed one --
+   go back and add it.
 
-STRICT RULES (apply to every visit object, on top of point 5/6 above):
-1. Use JSON null for any TIME-VARYING value not mentioned or not determinable from the text
-   for that visit.
+STRICT RULES (apply to every visit object, on top of point 5 above):
+1. Use JSON null for any TIME-VARYING value (point 5a) not mentioned or not determinable
+   from the text for that visit. Points 5c and 5d define their own defaults/fills instead
+   of null -- apply those there.
 2. Binary flags (0/1): use 1 if clearly present/positive, 0 if clearly absent, null if unknown.
 3. Numeric scores: return as JSON numbers (e.g. 30, not "30/30").
 4. For FAQ items: use the 0-3 scale defined in the codebook. Compute FAQ total as the sum of the 10 items.
