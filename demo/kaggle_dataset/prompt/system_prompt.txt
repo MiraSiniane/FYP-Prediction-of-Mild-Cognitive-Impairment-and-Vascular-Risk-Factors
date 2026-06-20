@@ -32,7 +32,7 @@ Your task:
         score (MMSCORE or MOCA) but does not break these down individually, do not leave
         them null -- default each to 1 (correct), especially when the parent score is
         high/near-normal for that visit. If an item IS explicitly mentioned, always use the
-        stated value instead of this default.
+        stated value instead of this default. if the MMSE score value is low than default some items (according to the text) to 0
       - FAQ sub-items (FAQFORM, FAQFINAN, FAQSHOP, FAQGAME, FAQBEVG, FAQMEAL, FAQEVENT,
         FAQTV, FAQREM, FAQTRAVL): if the visit gives the FAQ total but not the breakdown,
         reuse the per-item breakdown from the NEAREST other visit in this report that does
@@ -47,6 +47,8 @@ Your task:
       does state it -- look both backward AND forward in time (e.g. if visit 1 has no
       amyloid value but visit 2 does, fill visit 1 with visit 2's value). Only use null if
       NO visit in the whole report ever states that biomarker.
+   e. IADL and FAQ are the same test, one is over 4 and the other is over 30, when u find IADL if the value is 4 then that means FAQ score=30
+	and FAQ score = 15 if IADL =2, and fill proportionally 
 6. Before returning, re-count: the number of objects in "visits" MUST equal the number of
    distinct dates/consultations you listed in step 1. If it does not match, you missed one --
    go back and add it.
